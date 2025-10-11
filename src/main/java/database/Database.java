@@ -15,9 +15,12 @@ public class Database {
     public Database(){
         this.pokemons = new ArrayList<>();
         this.tipos = new ArrayList<>();
+        
         this.seederTipos(); 
+        // this.seederPokemon();
     }
 
+        
     public void seederPokemon(){
         /*
         pokemons.add(new Pokemon(546, "Cottonee", "Planta", "Fada", 50, 0.6f, 30, true)); //Adrian Kauan Aquino de Melo
@@ -191,8 +194,7 @@ public class Database {
         List fraquezaVoador = new ArrayList<>(List.of(eletrico, gelo, pedra));
         List resistenciaVoador = new ArrayList<>(List.of(inseto, lutador, planta, terrestre, terrestre));
         voador.setFraquezas(fraquezaVoador);
-        voador.setResistencias(resistenciaVoador);
-        
+        voador.setResistencias(resistenciaVoador);        
     }
     
     public Pokemon buscaPokemon(int id) {
@@ -204,7 +206,12 @@ public class Database {
         return null;
     }
 
-    public Tipo buscaTipo(){
+    public Tipo buscaTipo(String nome){
+        for(Tipo t: tipos){
+            if(t.getNome() == nome){
+                return t;
+            }
+        }
         return null;
     }
 }

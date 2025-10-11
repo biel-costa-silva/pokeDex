@@ -8,7 +8,7 @@ public class Tipo {
     private List<Tipo> fraquezas;
     private List<Tipo> resistencias;
     
-    //----------- Construtores ------------------
+    //------------- Construtores -------------
 
     public Tipo(String nome){        
         this.nome = nome;
@@ -29,7 +29,7 @@ public class Tipo {
         return nome;
     }
     
-    // ---------------- Fraquezas ------------------
+    // ------------- Fraquezas ----------------
     
     public void setFraquezas(List<Tipo> fraquezas){
         this.fraquezas = new ArrayList();
@@ -52,7 +52,7 @@ public class Tipo {
         return fraquezas;
     }
     
-   // --------------- Resistencias -----------------
+   // ------------- Resistencias ---------------
     
     public void setResistencias(List<Tipo> resistencias){
         this.resistencias = new ArrayList();

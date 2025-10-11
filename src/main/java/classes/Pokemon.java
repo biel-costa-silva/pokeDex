@@ -8,30 +8,39 @@ public class Pokemon {
     private int numero;
     private String nome;
     private List<Tipo> tipos;
-    private int vida;
-    private float peso;
-    private float altura;
-    private boolean evolui;
+    private Pokemon evoluiPara;// obejto Pokemon, que será o próximo na linha evolutiva [Pode ser nullo]
+    private int evoluiEm;// É o nivel que o Pokemon passa para a próxima evolução;
+    private boolean Lendario;// Para especies raras de Pokemon.
     
     //----------- Construtores ------------------
-
-    public Pokemon(int numero, String nome, List<Tipo> tipos, int vida, float peso, float altura, boolean evolui) {
+    
+    public Pokemon(){
+    }
+    
+    public Pokemon(int numero, String nome, List<Tipo> tipos, Pokemon evoluiPara, int evoluiEm, boolean ehLendario) {
         this.numero = numero;
         this.nome = nome;
         this.tipos = new ArrayList();
         for(Tipo t: tipos){
             this.tipos.add(t);
         }
-        this.vida = vida;
-        this.peso = peso;
-        this.altura = altura;
-        this.evolui = evolui;
+        this.evoluiPara = new Pokemon();
+        this.evoluiPara = evoluiPara;
+        this.evoluiEm = evoluiEm;
+        this.Lendario = ehLendario;        
     }      
     
-    public Pokemon() {
-
-    }
-
+    //Sobrecarga do construtor
+    public Pokemon(int numero, String nome, List<Tipo> tipos, boolean ehLendario) {
+        this.numero = numero;
+        this.nome = nome;
+        this.tipos = new ArrayList();
+        for(Tipo t: tipos){
+            this.tipos.add(t);
+        }
+        this.Lendario = ehLendario;        
+    }   
+    
     // ---------------- Numero ------------------
     
     public int getNumero() {
@@ -50,7 +59,7 @@ public class Pokemon {
         this.nome = nome;
     }
     
-    // ---------------- Tipo ------------------
+    // ----------------- Tipo -------------------
     
     public List<Tipo> getTipos() {
         return this.tipos;
@@ -60,45 +69,37 @@ public class Pokemon {
         for(Tipo t: tipos){
             this.tipos.add(t);
         }
+    }    
+    
+    // -------------- EvoluiPara ----------------
+    public Pokemon getEvoluiPara(){
+        return this.evoluiPara;
     }
     
-    // ---------------- Vida ------------------
-    
-    public int getVida() {
-        return vida;
-    }
-    public void setVida(int vida) {
-        this.vida = vida;
+    public void setEvoluiPokemon(Pokemon pokemon){
+        this.evoluiPara = new Pokemon();
+        this.evoluiPara = pokemon;
     }
     
-    // ---------------- Peso ------------------
-    
-    public float getPeso() {
-        return peso;
-    }
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
-
-    // ---------------- Altura ------------------
-    
-    public float getAltura() {
-        return altura;
-    }
-    public void setAltura(float altura) {
-        this.altura = altura;
-    }
-
-    // ---------------- Evolui ------------------
-    
-    public boolean isEvolui() {
-        return evolui;
-    }
-    public void setEvolui(boolean evolui) {
-        this.evolui = evolui;
+    // --------------- EvoluiEm -----------------
+    public int getEvoluiEm(){
+        return this.evoluiEm;
     }
     
-    // ---------------- Fraquezas ------------------
+    public void setEvoluiEm(int nivel){
+       this.evoluiEm = nivel;
+    }
+    
+    // -------------- isLendario ---------------    
+    public boolean isLendario(){
+        return this.Lendario;
+    }
+    
+    public void setLendario(boolean lendario){
+        this.Lendario = lendario;
+    }
+    
+    // --------------- Fraquezas -----------------
     
     public String getTipoFraquezas(){
         String tipos = "";
@@ -108,7 +109,7 @@ public class Pokemon {
         return tipos;
     }
     
-    // ---------------- Resistencias ------------------
+    // ------------- Resistencias --------------
     
      public String getTipoResistencias(){
         String tipos = "";
@@ -117,9 +118,12 @@ public class Pokemon {
         }
         return tipos;
     }
+     
+     
 
     
     
+     
     
     @Override
     public String toString() {
