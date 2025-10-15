@@ -10,24 +10,26 @@ public class Pokemon {
     private List<Tipo> tipos;
     private Pokemon evoluiPara;// obejto Pokemon, que será o próximo na linha evolutiva [Pode ser nullo]
     private int evoluiEm;// É o nivel que o Pokemon passa para a próxima evolução;
-    private boolean Lendario;// Para especies raras de Pokemon.
+    private boolean lendario;// Para especies raras de Pokemon.
     
     //----------- Construtores ------------------
     
     public Pokemon(){
     }
     
-    public Pokemon(int numero, String nome, List<Tipo> tipos, Pokemon evoluiPara, int evoluiEm, boolean ehLendario) {
+    public Pokemon(int numero, String nome, List<Tipo> tipos, Pokemon evoluiPara, int evoluiEm, boolean lendario) {
         this.numero = numero;
         this.nome = nome;
         this.tipos = new ArrayList();
         for(Tipo t: tipos){
             this.tipos.add(t);
         }
-        this.evoluiPara = new Pokemon();
-        this.evoluiPara = evoluiPara;
-        this.evoluiEm = evoluiEm;
-        this.Lendario = ehLendario;        
+        if(evoluiPara != null){
+            this.evoluiPara = new Pokemon();
+            this.evoluiPara = evoluiPara;
+            this.evoluiEm = evoluiEm;
+        }        
+        this.lendario = lendario;        
     }      
     
     //Sobrecarga do construtor
@@ -38,7 +40,7 @@ public class Pokemon {
         for(Tipo t: tipos){
             this.tipos.add(t);
         }
-        this.Lendario = ehLendario;        
+        this.lendario = ehLendario;        
     }   
     
     // ---------------- Numero ------------------
@@ -92,11 +94,11 @@ public class Pokemon {
     
     // -------------- isLendario ---------------    
     public boolean isLendario(){
-        return this.Lendario;
+        return this.lendario;
     }
     
     public void setLendario(boolean lendario){
-        this.Lendario = lendario;
+        this.lendario = lendario;
     }
     
     // --------------- Fraquezas -----------------

@@ -12,17 +12,15 @@ public class Main {
 
         //Pokemon persian = new Pokemon(053, "Persian", "Normal", 90, 32, 100, false);
         Database bd = new Database();
+        bd.Inicialize();
+                
+        Tipo eletrico = bd.buscaTipo("Eletrico");
+        List tipos_do_pokemon = new ArrayList<>(List.of(eletrico));
         
-        Tipo pedra = bd.buscaTipo("Pedra");        
-        System.out.println(pedra.getFraquezas());
-        List tipos_do_pikachu = new ArrayList<>(List.of(bd.buscaTipo("Eletrico")));
+        Pokemon raichu = new Pokemon(26, "Raichu", tipos_do_pokemon, false);        
+        Pokemon pikachu = new Pokemon(25, "Pikachu", tipos_do_pokemon, raichu, 25, false);
+        Pokemon diglett = bd.buscaPokemon("Diglett");
         
-        /*Pokemon achado = bd.buscaPokemon(25);
-        System.out.println(achado);
-        */
-        Pokemon raichu = new Pokemon(26, "Raichu", tipos_do_pikachu, false);        
-        Pokemon pikachu = new Pokemon(25, "Pikachu", tipos_do_pikachu, raichu, 30, false);
-        
-        System.out.println(pikachu.getTipoFraquezas());
+        System.out.println(diglett.getEvoluiPara().getNome());
     }
 }
