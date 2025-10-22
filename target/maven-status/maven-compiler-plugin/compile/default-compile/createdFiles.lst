@@ -1,0 +1,7 @@
+classes\Pokemon.class
+classes\PokemonLocal.class
+database\Database.class
+module-info.class
+classes\Tipo.class
+javadex2\SystemInfo.class
+javadex2\App.class
