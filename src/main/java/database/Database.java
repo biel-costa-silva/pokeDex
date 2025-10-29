@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Database {
 
-    private List<Pokemon> pokemons;
+    public List<Pokemon> pokemons;
     private List<Tipo> tipos;
 
     public Database(){
