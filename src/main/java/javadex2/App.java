@@ -9,59 +9,53 @@ import classes.Pokemon;
 import database.Database;
 import java.util.List;
 
-
 /**
  * JavaFX App
  */
 public class App extends Application {
-    
-    private Label label2;
-    private List<Pokemon> pokemons;
+    //variaveis globais
+    private Label poke; 
     private Pokemon pokemonEscolhido;
 
     @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-        
+    public void start(Stage stage) {            
         Database bd = new Database();
-        bd.Inicialize();
-        pokemons = bd.pokemons;
-        label2 = new Label("Hello world");        
+        bd.Inicialize();      
         
-        Pokemon pikachu = new Pokemon();
-        Pokemon raichu = new Pokemon();
+        poke = new Label("Hello world");        
+           
         
-        pikachu = bd.buscaPokemon(25);
-        raichu = bd.buscaPokemon(26);
-        
-        
-        
-        Button Pikachu = new Button(bd.buscaPokemon(25).getNome());// botao
-        Pikachu.setOnAction(e -> atualizacao());
-        var Raichu = new Label(raichu.getNome());
-        
-        StackPane pilha = new StackPane();
-        ScrollPane tela = new ScrollPane();
+        VBox listaDePokemons = new VBox();
         
         // lista de pokemons ----------------------------------
-        VBox listaDePokemons = new VBox();
         for(int i=1; i <= 151; i++){
-            listaDePokemons.getChildren().add(new Button(bd.buscaPokemon(i).getNome()));
-        }
-        // ----------------------------------------------------
+            Pokemon lacoRepeticao = bd.buscaPokemon(i);
+            Button botao = new Button(lacoRepeticao.getNome());
+            botao.setOnAction(e->atualizacao(lacoRepeticao));
+            listaDePokemons.getChildren().add(botao);
+        }        
         
         
-        tela.setContent(listaDePokemons);
-       
         
-        var scene = new Scene(tela, 640, 480);
+        
+        
+        // adicionar outros elementos à cima -----------------
+        
+        // tela principal -------------------------------------                
+        ScrollPane scrollList = new ScrollPane();
+        scrollList.setContent(listaDePokemons);       
+        
+        HBox telaPrincipal = new HBox();
+        telaPrincipal.getChildren().add(scrollList);
+        telaPrincipal.getChildren().add(poke);
+        
+        var scene = new Scene(telaPrincipal, 640, 480);
         stage.setScene(scene);
         stage.show();
     }
     
-    public void atualizacao(){
-        label2 = new Label("Atualizei");
+    public void atualizacao(Pokemon p){
+        poke.setText(p.getNome());
     }
 
     public static void main(String[] args) {
